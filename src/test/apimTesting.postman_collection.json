@@ -1,0 +1,862 @@
+{
+	"id": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+	"name": "apimTesting",
+	"description": "This is to test the API Manager",
+	"auth": null,
+	"events": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "253e1c9f-a8fb-4bf6-b9cb-5909016e3d67",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9dd1e5f2-fe01-4460-a5c1-563fb34a29d5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"ac345cae-da93-448a-b704-ab2e4864e9a6",
+		"3ec43363-2126-423d-b077-6b1a0fd0e88f",
+		"34bd1f5a-00de-4163-b254-ff303a690863",
+		"520f3935-30a0-44e2-acf5-ff906e1f285c",
+		"c6a3df62-2e23-482e-963f-5db0b58e6666"
+	],
+	"folders": [
+		{
+			"id": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"name": "GET",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+			"folder": null,
+			"order": [
+				"3e3fde31-b362-4737-a64a-e76c4d26d0ea",
+				"f3d6f590-1c34-4015-8288-145e7e5ba327",
+				"2efc4678-dc24-4a50-a33f-64b12736361d",
+				"6bc862ef-a67f-4f9a-a2c8-2d10f434bb5f",
+				"2d4a9d71-5924-4e5e-b8fe-f837650ef92a",
+				"e9db175a-8828-479d-82e3-a415660783f3",
+				"b38e8982-1355-4bc6-aeaa-74066f73e643",
+				"8187b256-2057-413d-8250-c9041ae8afa8",
+				"35100e35-fae4-4057-bfbd-45eb3cc65313",
+				"4bf0e1cb-198c-444f-a659-f5e757bdebd9",
+				"35a55f4a-cee4-4cc4-a98a-116ccf5bd768"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "ac345cae-da93-448a-b704-ab2e4864e9a6",
+			"name": "Generate Access Token",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+			"folder": null,
+			"order": [
+				"81345834-1af2-4984-8ab2-0ff6712c1cdc"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "520f3935-30a0-44e2-acf5-ff906e1f285c",
+			"name": "OPTIONS",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+			"folder": null,
+			"order": [
+				"df3d48e1-4d0b-452e-9ef9-4eaa48aff366"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "34bd1f5a-00de-4163-b254-ff303a690863",
+			"name": "POST",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+			"folder": null,
+			"order": [
+				"17acb236-2028-45f0-a2c2-452fadfae25f"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "c6a3df62-2e23-482e-963f-5db0b58e6666",
+			"name": "PUT",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "867948df-3c91-45e0-bd5e-70e7e9cbab24",
+			"folder": null,
+			"order": [
+				"ab51f26b-e598-405b-aa92-2f119b87af41"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "17acb236-2028-45f0-a2c2-452fadfae25f",
+			"name": "calling users endpoint with POST method",
+			"url": "{{baseUrl}}/users",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fe8415b-9b94-45f5-9dd4-fa8fd98c6667",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Created users name is wso2 user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"wso2 user\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "34bd1f5a-00de-4163-b254-ff303a690863",
+			"rawModeData": "{\n    \"name\": \"wso2 user\"\n}",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "2d4a9d71-5924-4e5e-b8fe-f837650ef92a",
+			"name": "calling blogs EP with multiple query params",
+			"url": "{{baseUrl}}/users/1/blogs?page=1&limit=3",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "limit",
+					"value": "3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eae1514d-7d16-4c33-9e5b-630b0f59fe44",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 3\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(3);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "2efc4678-dc24-4a50-a33f-64b12736361d",
+			"name": "calling blogs endpoint",
+			"url": "{{baseUrl}}/users/1/blogs",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b85449c-8b4b-4963-8478-535128f3eea3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains string userId\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "35100e35-fae4-4057-bfbd-45eb3cc65313",
+			"name": "calling users EP with a param that has a reserved URI character",
+			"url": "{{baseUrl}}/users/1/tenants",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c38bc68-e00a-405c-bfc3-24235f5efdeb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 14\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(14);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "35a55f4a-cee4-4cc4-a98a-116ccf5bd768",
+			"name": "calling users EP with slash prefixed path segments - {/var1,var2,var3}",
+			"url": "{{baseUrl}}/users/6/blogs/60/likes",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2d74834-a6b8-4be3-bb66-59073912a6ca",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 1\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(1);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Name is Graciela Ritchie\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Graciela Ritchie\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "3e3fde31-b362-4737-a64a-e76c4d26d0ea",
+			"name": "calling users endpoint",
+			"url": "{{baseUrl}}/users",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "33b3e403-2f9f-48c8-819a-5fdfafa45bfe",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f37bd551-9723-4702-89f3-5fe8b6a5816c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "4bf0e1cb-198c-444f-a659-f5e757bdebd9",
+			"name": "calling tenants EP with dot prefixed labels - {.var1,var2}",
+			"url": "{{baseUrl}}/users/15/tenants?search=wso2.employee.com",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "search",
+					"value": "wso2.employee.com",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86df0a84-3e40-49cd-a6fc-9a05a9ec45d6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 2\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(2);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "6bc862ef-a67f-4f9a-a2c8-2d10f434bb5f",
+			"name": "calling blogs endpoint with url param",
+			"url": "{{baseUrl}}/users/1/blogs/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ffd1920-4861-4d5d-84f7-42bbd6544356",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Id matches 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(\"1\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "81345834-1af2-4984-8ab2-0ff6712c1cdc",
+			"name": "generate access token for application",
+			"url": "{{AccessTokenUrl}}/token",
+			"description": "Generated from a curl request: \ncurl -X POST -k -d \\\"grant_type=client_credentials\\\" -H \\\"Authorization: Basic MjhXWkxVNkQ3YmV4a0J0TFpGdmdDU05Jb0JZYTpLczNjOGl1T1Z0OFRjOEZBNVdFWEZ3T3Y4c0lh\\\" https://demo-aviation.ml/token\n",
+			"data": [
+				{
+					"key": "grant_type",
+					"value": "client_credentials",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic {{Base64EncodedCidCS}}",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "857b4b45-356a-4e03-94a2-ef03d83f9b26",
+						"type": "text/javascript",
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\")",
+							"",
+							"//Encrypt",
+							"var rawStr = CryptoJS.enc.Utf8.parse(pm.environment.get('clientId') + \":\" + pm.environment.get('clientSecret'))",
+							"var base64 = CryptoJS.enc.Base64.stringify(rawStr)",
+							"console.log(`Encrypted value: ${base64}`)",
+							"",
+							"postman.setGlobalVariable(\"Base64EncodedCidCS\", base64);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "58506b0f-33cd-473f-a610-97d1f779ea7d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"Access Token\", pm.response.json().access_token);",
+							""
+						]
+					}
+				}
+			],
+			"folder": "ac345cae-da93-448a-b704-ab2e4864e9a6",
+			"headers": "Authorization: Basic {{Base64EncodedCidCS}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "8187b256-2057-413d-8250-c9041ae8afa8",
+			"name": "calling users endpoint with a query param that includes a space",
+			"url": "{{baseUrl}}/users?search=Andy Sipes",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "search",
+					"value": "Andy Sipes",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49bbbf4e-b570-4124-9da2-5d7fa8097717",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Name of the User is Andy Sipes\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Andy Sipes\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ab51f26b-e598-405b-aa92-2f119b87af41",
+			"name": "calling users EP with PUT method",
+			"url": "{{baseUrl}}/users/9",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba66b306-8bc6-4597-b1ec-7b8db9be4bf6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Updated User's name is palmgrove\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"palmgrove\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "c6a3df62-2e23-482e-963f-5db0b58e6666",
+			"rawModeData": "{ \"name\": \"palmgrove\"}",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "b38e8982-1355-4bc6-aeaa-74066f73e643",
+			"name": "Calling blogs EP with a query param",
+			"url": "{{baseUrl}}//users/1/blogs?search=55",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "search",
+					"value": "55",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a36c49f1-4530-42c7-8060-69cee5cc39c1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 1\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(1);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "df3d48e1-4d0b-452e-9ef9-4eaa48aff366",
+			"name": "calling users EP with OPTIONS method",
+			"url": "{{baseUrl}}/users",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "OPTIONS",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07caf023-e544-47b2-b5bb-7dfa8ff82067",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Allowed HTTP Request Methods\", function () {",
+							"    var header = pm.response.headers.one('Access-Control-Allow-Methods');",
+							"    pm.expect(pm.response.headers.one('Access-Control-Allow-Methods').value).to.equal(\"GET,PUT,POST,DELETE,OPTIONS\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "520f3935-30a0-44e2-acf5-ff906e1f285c",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e9db175a-8828-479d-82e3-a415660783f3",
+			"name": "calling blogs EP with query params with special char value",
+			"url": "{{baseUrl}}/users/1/blogs?limit=3&page=%",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "limit",
+					"value": "3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page",
+					"value": "%",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dad77ab1-3206-479a-b434-1fbc30ee43aa",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Length of the payload is 0\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.length).to.eql(0);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f3d6f590-1c34-4015-8288-145e7e5ba327",
+			"name": "calling users endpoint with url param",
+			"url": "{{baseUrl}}/users/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer {{Access Token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "725806ab-b62e-46ee-a566-7f1020831818",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains string createdAt\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"createdAt\");",
+							"});",
+							"",
+							"pm.test(\"Body contains string name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": "3ec43363-2126-423d-b077-6b1a0fd0e88f",
+			"headers": "Authorization: Bearer {{Access Token}}\n",
+			"pathVariables": {}
+		}
+	]
+}
+
